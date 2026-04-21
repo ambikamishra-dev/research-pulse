@@ -23,6 +23,7 @@ class Settings(BaseSettings):
 
     # embeddings
     embedding_model: str = "BAAI/bge-small-en-v1.5"
+    embedding_dimension: int = 384
 
     # retreival
     retrieval_top_k: int = 20

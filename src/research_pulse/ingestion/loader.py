@@ -10,6 +10,10 @@ class PDFLoader:
 
     def load(self, pdf_path: Path) -> list[dict]:
         try:
+            if not pdf_path.exists():
+                raise FileNotFoundError(f"PDF not found: {pdf_path}")
+            if pdf_path.suffix.lower() != ".pdf":
+                raise ValueError(f"Expected .pdf file, got: {pdf_path.suffix}")
             with fitz.open(pdf_path) as doc:
                 title = doc.metadata.get("title", "Unknown Title")
                 author = doc.metadata.get("author", "Unknown Author")
